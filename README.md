@@ -12,7 +12,7 @@ I've built this program on a random day in my unemployed period. Thought about m
 
 - ⏱️ **Real-time countdown** showing remaining time (days, hours, minutes, seconds)
 - 🕐 **Visual clock grid** with 8 circular clocks showing remaining life percentage (water-filling effect)
-- 🌍 **13 languages supported**: Korean, English, German, Japanese, Simplified Chinese, Traditional Chinese, Russian, French, Italian, Portuguese, Spanish, Ukrainian, Dutch
+- 🌍 **13 languages supported**: Dutch, English, French, German, Italian, Japanese, Korean, Portuguese, Russian, Simplified Chinese, Spanish, Traditional Chinese, Ukrainian
 - 📊 **Multiple life expectancy scenarios**: Calculate for 30, 40, 50, 60, 70, 80, 90, or custom years
 - 💡 **Activity suggestions**: Shows what you could accomplish with remaining time (books, movies, trips, languages, skills)
 - 🎨 **Clean, intuitive interface** with separate input fields for birth date (Year, Month, Day, Time)
@@ -185,19 +185,19 @@ TickingLifeClock/
 
 ## Supported Languages
 
-- 한국어 (Korean)
-- English
-- Deutsch (German)
-- 日本語 (Japanese)
-- 简体中文 (Simplified Chinese)
-- 繁體中文 (Traditional Chinese)
-- Русский (Russian)
-- Français (French)
-- Italiano (Italian)
-- Português (Portuguese)
-- Español (Spanish)
-- Українська (Ukrainian)
 - Nederlands (Dutch)
+- English
+- Français (French)
+- Deutsch (German)
+- Italiano (Italian)
+- 日本語 (Japanese)
+- 한국어 (Korean)
+- Português (Portuguese)
+- Русский (Russian)
+- 简体中文 (Simplified Chinese)
+- Español (Spanish)
+- 繁體中文 (Traditional Chinese)
+- Українська (Ukrainian)
 
 ## Features in Detail
 
