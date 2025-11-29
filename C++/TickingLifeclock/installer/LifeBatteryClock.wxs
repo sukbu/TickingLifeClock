@@ -12,7 +12,7 @@
     <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
     <Media Id="1" Cabinet="LifeBatteryClock.cab" EmbedCab="yes" />
     
-    <StandardDirectory Id="ProgramFilesFolder">
+    <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="INSTALLFOLDER" Name="Life Battery Clock">
         <Directory Id="PlatformsFolder" Name="platforms" />
         <Directory Id="ImageFormatsFolder" Name="imageformats" />
