@@ -64,11 +64,9 @@
         <File Source="..\..\x64\Release\Qt6Network.dll" KeyPath="yes" />
       </Component>
       
-      <!-- Qt SVG DLL (마지막 파일 컴포넌트 - 폴더 제거도 여기서 처리) -->
+      <!-- Qt SVG DLL -->
       <Component Id="Qt6Svg">
         <File Source="..\..\x64\Release\Qt6Svg.dll" KeyPath="yes" />
-        <!-- 마지막 파일이므로, 이 컴포넌트 제거 시 폴더도 제거 -->
-        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
       </Component>
       
       <!-- Platforms 폴더 -->
@@ -128,17 +126,33 @@
                        KeyPath="yes" />
       </Component>
       
-      <!-- Styles 폴더 (Qt 스타일 플러그인) -->
+      <!-- Styles 폴더 (Qt 스타일 플러그인) - 마지막 하위 폴더 -->
       <Component Id="StyleModernWindows" Directory="StylesFolder">
         <CreateFolder />
         <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
       </Component>
+      <!-- 마지막 하위 폴더 제거 컴포넌트 - 여기서 메인 폴더도 제거 -->
       <Component Id="RemoveStylesFolder" Directory="StylesFolder">
         <RemoveFile Id="RemoveStylesFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="StylesFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
                        Name="RemoveStylesFolder" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
+      
+      <!-- 메인 설치 폴더 제거 컴포넌트 (모든 하위 폴더가 제거된 후 마지막에 실행) -->
+      <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
+        <CreateFolder />
+        <!-- 메인 폴더의 모든 파일 제거 -->
+        <RemoveFile Id="RemoveAllMainFiles" Name="*.*" On="uninstall" />
+        <!-- 빈 폴더 제거 -->
+        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="InstallFolderCleanup" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
