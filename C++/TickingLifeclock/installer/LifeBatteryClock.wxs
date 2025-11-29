@@ -64,9 +64,11 @@
         <File Source="..\..\x64\Release\Qt6Network.dll" KeyPath="yes" />
       </Component>
       
-      <!-- Qt SVG DLL -->
+      <!-- Qt SVG DLL (마지막 파일 컴포넌트 - 폴더 제거도 여기서 처리) -->
       <Component Id="Qt6Svg">
         <File Source="..\..\x64\Release\Qt6Svg.dll" KeyPath="yes" />
+        <!-- 마지막 파일이므로, 이 컴포넌트 제거 시 폴더도 제거 -->
+        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
       </Component>
       
       <!-- Platforms 폴더 -->
@@ -142,24 +144,6 @@
                        KeyPath="yes" />
       </Component>
       
-      <!-- 메인 설치 폴더 제거 컴포넌트 (모든 하위 폴더와 파일이 제거된 후 실행) -->
-      <!-- 모든 파일을 명시적으로 제거한 후 폴더 제거 -->
-      <!-- WiX v6.0에서 RemoveFolder가 제대로 작동하지 않을 수 있으므로, 
-           RemoveFile로 모든 파일을 제거하고 RemoveFolder로 폴더를 제거 -->
-      <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
-        <CreateFolder />
-        <!-- 모든 파일 제거 (와일드카드 사용) -->
-        <RemoveFile Id="RemoveAllFiles" Name="*.*" On="uninstall" />
-        <!-- 빈 폴더 제거 (모든 파일과 하위 폴더가 제거된 후 실행됨) -->
-        <!-- Directory 속성을 명시적으로 지정 -->
-        <RemoveFolder Id="RemoveInstallFolder" Directory="INSTALLFOLDER" On="uninstall" />
-        <RegistryValue Root="HKLM" 
-                       Key="Software\Life Battery Clock" 
-                       Name="InstallFolderCleanup" 
-                       Type="integer" 
-                       Value="1" 
-                       KeyPath="yes" />
-      </Component>
       
     </ComponentGroup>
   </Fragment>
