@@ -5,7 +5,8 @@
            Manufacturer="sukbu"
            UpgradeCode="6413ac81-0d5c-4525-ac03-b4e335f441d5"
            Compressed="yes"
-           Scope="perMachine">
+           Scope="perMachine"
+           Platform="x64">
     
     <Icon Id="AppIcon" SourceFile="..\icon.ico" />
     
@@ -37,67 +38,67 @@
   <Fragment>
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
       <!-- 메인 실행 파일 -->
-      <Component Id="MainExecutable">
+      <Component Id="MainExecutable" Win64="yes">
         <File Id="TickingLifeclock.exe" 
               Source="..\..\x64\Release\TickingLifeclock.exe" 
               KeyPath="yes" />
       </Component>
       
       <!-- Qt Core DLL -->
-      <Component Id="Qt6Core">
+      <Component Id="Qt6Core" Win64="yes">
         <File Source="..\..\x64\Release\Qt6Core.dll" />
       </Component>
       
       <!-- Qt GUI DLL -->
-      <Component Id="Qt6Gui">
+      <Component Id="Qt6Gui" Win64="yes">
         <File Source="..\..\x64\Release\Qt6Gui.dll" />
       </Component>
       
       <!-- Qt Widgets DLL -->
-      <Component Id="Qt6Widgets">
+      <Component Id="Qt6Widgets" Win64="yes">
         <File Source="..\..\x64\Release\Qt6Widgets.dll" />
       </Component>
       
       <!-- Qt Network DLL -->
-      <Component Id="Qt6Network">
+      <Component Id="Qt6Network" Win64="yes">
         <File Source="..\..\x64\Release\Qt6Network.dll" />
       </Component>
       
       <!-- Qt SVG DLL -->
-      <Component Id="Qt6Svg">
+      <Component Id="Qt6Svg" Win64="yes">
         <File Source="..\..\x64\Release\Qt6Svg.dll" />
       </Component>
       
       <!-- Platforms 폴더 -->
-      <Component Id="PlatformsQWindows" Directory="PlatformsFolder">
+      <Component Id="PlatformsQWindows" Directory="PlatformsFolder" Win64="yes">
         <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
         <RemoveFolder Id="PlatformsFolder" On="uninstall" />
       </Component>
       
       <!-- Image Formats 폴더 -->
-      <Component Id="ImageFormatGif" Directory="ImageFormatsFolder">
+      <Component Id="ImageFormatGif" Directory="ImageFormatsFolder" Win64="yes">
         <File Source="..\..\x64\Release\imageformats\qgif.dll" KeyPath="yes" />
       </Component>
-      <Component Id="ImageFormatJpeg" Directory="ImageFormatsFolder">
+      <Component Id="ImageFormatJpeg" Directory="ImageFormatsFolder" Win64="yes">
         <File Source="..\..\x64\Release\imageformats\qjpeg.dll" KeyPath="yes" />
       </Component>
-      <Component Id="ImageFormatSvg" Directory="ImageFormatsFolder">
+      <Component Id="ImageFormatSvg" Directory="ImageFormatsFolder" Win64="yes">
         <File Source="..\..\x64\Release\imageformats\qsvg.dll" KeyPath="yes" />
       </Component>
-      <Component Id="ImageFormatIco" Directory="ImageFormatsFolder">
+      <Component Id="ImageFormatIco" Directory="ImageFormatsFolder" Win64="yes">
         <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
         <RemoveFolder Id="ImageFormatsFolder" On="uninstall" />
       </Component>
       
       <!-- Icon Engines 폴더 -->
-      <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
+      <Component Id="IconEnginesSvg" Directory="IconEnginesFolder" Win64="yes">
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
         <RemoveFolder Id="IconEnginesFolder" On="uninstall" />
       </Component>
       
       <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
       <!-- 모든 하위 폴더가 제거된 후 메인 폴더 제거 -->
-      <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
+      <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER" Win64="yes">
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
