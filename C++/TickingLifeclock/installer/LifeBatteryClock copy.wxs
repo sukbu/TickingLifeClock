@@ -1,159 +1,149 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
-
-  <Package
-      Name="Life Battery Clock"
-      Manufacturer="sukbu"
-      Version="1.0.0"
-      UpgradeCode="6413ac81-0d5c-4525-ac03-b4e335f441d5"
-      Scope="perMachine"
-      Compressed="yes">
-
-    <!-- 아이콘 -->
+  <Package Name="Life Battery Clock"
+           Version="1.0.0"
+           Manufacturer="sukbu"
+           UpgradeCode="6413ac81-0d5c-4525-ac03-b4e335f441d5"
+           Compressed="yes"
+           Scope="perMachine">
+    
     <Icon Id="AppIcon" SourceFile="..\icon.ico" />
-
-    <!-- 상위 버전이 설치되어 있으면 차단 -->
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-
-    <!-- 내부 CAB -->
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
     <Media Id="1" Cabinet="LifeBatteryClock.cab" EmbedCab="yes" />
-
-    <!-- 설치 폴더 구조 -->
+    
     <StandardDirectory Id="ProgramFiles64Folder">
       <Directory Id="INSTALLFOLDER" Name="Life Battery Clock">
-        <Directory Id="PlatformsFolder"     Name="platforms" />
-        <Directory Id="ImageFormatsFolder"  Name="imageformats" />
-        <Directory Id="IconEnginesFolder"   Name="iconengines" />
-        <Directory Id="StylesFolder"        Name="styles" />
+        <Directory Id="PlatformsFolder" Name="platforms" />
+        <Directory Id="ImageFormatsFolder" Name="imageformats" />
+        <Directory Id="IconEnginesFolder" Name="iconengines" />
+        <Directory Id="StylesFolder" Name="styles" />
       </Directory>
     </StandardDirectory>
-
-    <!-- 시작 메뉴 / 바탕화면 -->
+    
     <StandardDirectory Id="ProgramMenuFolder">
       <Directory Id="ApplicationProgramsFolder" Name="Life Battery Clock" />
     </StandardDirectory>
-
+    
     <StandardDirectory Id="DesktopFolder" />
-
-    <!-- 하나의 Feature에 모든 컴포넌트 포함 -->
+    
     <Feature Id="ProductFeature" Title="Life Battery Clock" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentGroupRef Id="Shortcuts" />
       <ComponentGroupRef Id="DesktopShortcut" />
     </Feature>
-
   </Package>
-
-  <!-- 실제 설치 파일들 -->
+  
+  <!-- 설치할 파일들 -->
   <Fragment>
-    <ComponentGroup Id="ProductComponents">
-
-      <!-- 메인 EXE -->
-      <Component Id="MainExecutable" Directory="INSTALLFOLDER">
-        <File Id="TickingLifeclockExe"
-              Source="..\..\x64\Release\TickingLifeclock.exe"
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- 메인 실행 파일 -->
+      <Component Id="MainExecutable">
+        <File Id="TickingLifeclock.exe" 
+              Source="..\..\x64\Release\TickingLifeclock.exe" 
               KeyPath="yes" />
       </Component>
-
-      <!-- Qt DLL 들 (각각 자기 Component; KeyPath = DLL) -->
-      <Component Id="Qt6Core" Directory="INSTALLFOLDER">
+      
+      <!-- Qt Core DLL -->
+      <Component Id="Qt6Core">
         <File Source="..\..\x64\Release\Qt6Core.dll" KeyPath="yes" />
       </Component>
-
-      <Component Id="Qt6Gui" Directory="INSTALLFOLDER">
+      
+      <!-- Qt GUI DLL -->
+      <Component Id="Qt6Gui">
         <File Source="..\..\x64\Release\Qt6Gui.dll" KeyPath="yes" />
       </Component>
-
-      <Component Id="Qt6Widgets" Directory="INSTALLFOLDER">
+      
+      <!-- Qt Widgets DLL -->
+      <Component Id="Qt6Widgets">
         <File Source="..\..\x64\Release\Qt6Widgets.dll" KeyPath="yes" />
       </Component>
-
-      <Component Id="Qt6Network" Directory="INSTALLFOLDER">
+      
+      <!-- Qt Network DLL -->
+      <Component Id="Qt6Network">
         <File Source="..\..\x64\Release\Qt6Network.dll" KeyPath="yes" />
       </Component>
-
-      <Component Id="Qt6Svg" Directory="INSTALLFOLDER">
+      
+      <!-- Qt SVG DLL -->
+      <Component Id="Qt6Svg">
         <File Source="..\..\x64\Release\Qt6Svg.dll" KeyPath="yes" />
       </Component>
-
-      <!-- platforms\qwindows.dll -->
+      
+      <!-- Platforms 폴더 -->
       <Component Id="PlatformsQWindows" Directory="PlatformsFolder">
+        <CreateFolder />
         <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
       </Component>
-
-      <!-- imageformats\* -->
-      <Component Id="ImageFormatGif" Directory="ImageFormatsFolder">
-        <File Source="..\..\x64\Release\imageformats\qgif.dll" KeyPath="yes" />
-      </Component>
-
-      <Component Id="ImageFormatJpeg" Directory="ImageFormatsFolder">
-        <File Source="..\..\x64\Release\imageformats\qjpeg.dll" KeyPath="yes" />
-      </Component>
-
-      <Component Id="ImageFormatSvg" Directory="ImageFormatsFolder">
-        <File Source="..\..\x64\Release\imageformats\qsvg.dll" KeyPath="yes" />
-      </Component>
-
-      <Component Id="ImageFormatIco" Directory="ImageFormatsFolder">
-        <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
-      </Component>
-
-      <!-- iconengines\qsvgicon.dll -->
-      <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
-        <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
-      </Component>
-
-      <!-- styles\qmodernwindowsstyle.dll -->
-      <Component Id="StyleModernWindows" Directory="StylesFolder">
-        <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
-      </Component>
-
-      <!-- 하위 폴더 제거 컴포넌트들 (uninstall 시 폴더 삭제) -->
       <Component Id="RemovePlatformsFolder" Directory="PlatformsFolder">
         <RemoveFile Id="RemovePlatformsFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="PlatformsFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
-                       Key="Software\LifeBatteryClock" 
+                       Key="Software\Life Battery Clock" 
                        Name="RemovePlatformsFolder" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
       </Component>
-
+      
+      <!-- Image Formats 폴더 -->
+      <Component Id="ImageFormatGif" Directory="ImageFormatsFolder">
+        <CreateFolder />
+        <File Source="..\..\x64\Release\imageformats\qgif.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ImageFormatJpeg" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qjpeg.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ImageFormatSvg" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qsvg.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ImageFormatIco" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
+      </Component>
       <Component Id="RemoveImageFormatsFolder" Directory="ImageFormatsFolder">
         <RemoveFile Id="RemoveImageFormatsFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="ImageFormatsFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
-                       Key="Software\LifeBatteryClock" 
+                       Key="Software\Life Battery Clock" 
                        Name="RemoveImageFormatsFolder" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
       </Component>
-
+      
+      <!-- Icon Engines 폴더 -->
+      <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
+        <CreateFolder />
+        <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
+      </Component>
       <Component Id="RemoveIconEnginesFolder" Directory="IconEnginesFolder">
         <RemoveFile Id="RemoveIconEnginesFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="IconEnginesFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
-                       Key="Software\LifeBatteryClock" 
+                       Key="Software\Life Battery Clock" 
                        Name="RemoveIconEnginesFolder" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
       </Component>
-
+      
+      <!-- Styles 폴더 (Qt 스타일 플러그인) - 마지막 하위 폴더 -->
+      <Component Id="StyleModernWindows" Directory="StylesFolder">
+        <CreateFolder />
+        <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
+      </Component>
+      <!-- 마지막 하위 폴더 제거 컴포넌트 - 여기서 메인 폴더도 제거 -->
       <Component Id="RemoveStylesFolder" Directory="StylesFolder">
         <RemoveFile Id="RemoveStylesFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="StylesFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
-                       Key="Software\LifeBatteryClock" 
+                       Key="Software\Life Battery Clock" 
                        Name="RemoveStylesFolder" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
       </Component>
-
-      <!-- 메인 설치 폴더 제거 컴포넌트 (모든 하위 폴더와 파일이 제거된 후 마지막에 실행) -->
+      
+      <!-- 메인 설치 폴더 제거 컴포넌트 (모든 하위 폴더가 제거된 후 마지막에 실행) -->
       <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
         <CreateFolder />
         <!-- 메인 폴더의 모든 파일 제거 -->
@@ -161,58 +151,52 @@
         <!-- 빈 폴더 제거 -->
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
         <RegistryValue Root="HKLM" 
-                       Key="Software\LifeBatteryClock" 
+                       Key="Software\Life Battery Clock" 
                        Name="InstallFolderCleanup" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
       </Component>
-
+      
+      
     </ComponentGroup>
   </Fragment>
-
-  <!-- 시작 메뉴 / 데스크탑 바로가기 -->
+  
+  <!-- 바로가기 -->
   <Fragment>
-
-    <!-- 시작 메뉴 -->
-    <ComponentGroup Id="Shortcuts">
-      <Component Id="ApplicationShortcut" Directory="ApplicationProgramsFolder">
+    <ComponentGroup Id="Shortcuts" Directory="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut">
         <Shortcut Id="ApplicationStartMenuShortcut"
                   Name="Life Battery Clock"
                   Description="Life Battery Clock Application"
                   Target="[INSTALLFOLDER]TickingLifeclock.exe"
                   WorkingDirectory="INSTALLFOLDER"
                   Icon="AppIcon" />
-        <!-- 시작 메뉴 폴더 제거 -->
         <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
-        <!-- 이 레지스트리 값이 이 컴포넌트의 KeyPath -->
-        <RegistryValue Root="HKLM"
-                       Key="Software\LifeBatteryClock"
-                       Name="Installed"
-                       Type="integer"
-                       Value="1"
+        <RegistryValue Root="HKCU" 
+                       Key="Software\Life Battery Clock" 
+                       Name="Installed" 
+                       Type="integer" 
+                       Value="1" 
                        KeyPath="yes" />
       </Component>
     </ComponentGroup>
-
-    <!-- 바탕화면 아이콘 -->
-    <ComponentGroup Id="DesktopShortcut">
-      <Component Id="DesktopShortcutComponent" Directory="DesktopFolder">
+    
+    <ComponentGroup Id="DesktopShortcut" Directory="DesktopFolder">
+      <Component Id="DesktopShortcutComponent">
         <Shortcut Id="DesktopShortcut"
                   Name="Life Battery Clock"
                   Target="[INSTALLFOLDER]TickingLifeclock.exe"
                   WorkingDirectory="INSTALLFOLDER"
                   Icon="AppIcon" />
-        <!-- 바탕화면 바로가기 제거 (RemoveFolder는 DesktopFolder에 사용 불가) -->
-        <RegistryValue Root="HKLM"
-                       Key="Software\LifeBatteryClock"
-                       Name="DesktopShortcut"
-                       Type="integer"
-                       Value="1"
+        <RemoveFolder Id="DesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" 
+                       Key="Software\Life Battery Clock" 
+                       Name="DesktopShortcut" 
+                       Type="integer" 
+                       Value="1" 
                        KeyPath="yes" />
       </Component>
     </ComponentGroup>
-
   </Fragment>
-
 </Wix>
