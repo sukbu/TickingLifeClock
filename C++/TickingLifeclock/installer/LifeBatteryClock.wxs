@@ -91,6 +91,17 @@
       <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
       </Component>
+      
+      <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
+      <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
+        <RemoveFolder Id="RemoveInstallFolder" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="InstallFolderCleanup" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
     </ComponentGroup>
   </Fragment>
   
