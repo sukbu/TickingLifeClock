@@ -11,12 +11,12 @@ I've built this program on a random day in my unemployed period. Thought about m
 ## Features
 
 - ⏱️ **Real-time countdown** showing remaining time (days, hours, minutes, seconds)
-- 🔋 **Visual battery indicator** using special characters (■/□) to represent remaining life percentage
+- 🕐 **Visual clock grid** with 8 circular clocks showing remaining life percentage (water-filling effect)
 - 🌍 **13 languages supported**: Korean, English, German, Japanese, Simplified Chinese, Traditional Chinese, Russian, French, Italian, Portuguese, Spanish, Ukrainian, Dutch
 - 📊 **Multiple life expectancy scenarios**: Calculate for 30, 40, 50, 60, 70, 80, 90, or custom years
 - 💡 **Activity suggestions**: Shows what you could accomplish with remaining time (books, movies, trips, languages, skills)
 - 🎨 **Clean, intuitive interface** with separate input fields for birth date (Year, Month, Day, Time)
-- 🔍 **Mouse wheel zoom** support (Python version)
+- 🔍 **Font scaling** support (Ctrl + Mouse Wheel) for both C++ and Python versions
 
 ## Screenshots
 
@@ -25,7 +25,8 @@ The application displays:
 - Birth date input (separate fields for Year, Month, Day, Time)
 - Life expectancy inputs for multiple scenarios
 - Remaining time countdown for each scenario
-- Visual battery bar: `[■■■■■■■■■■□□□□□□□□] XX.XX%`
+- Visual clock grid: 8 circular clocks arranged in a row, with water-filling effect showing remaining life percentage
+- Battery percentage with 2 decimal places
 - Activity suggestions based on remaining time
 
 ## Requirements
@@ -85,7 +86,7 @@ The application displays:
 4. **View results**:
    - Remaining time countdown
    - Battery percentage
-   - Visual battery bar
+   - Visual clock grid (8 clocks with water-filling effect)
    - Activity suggestions
 
 ## Building from Source
@@ -185,11 +186,13 @@ TickingLifeClock/
 
 ## Features in Detail
 
-### Visual Battery Indicator
-- Uses `■` (filled) and `□` (empty) characters
-- 20-character bar length
+### Visual Clock Grid
+- 8 circular clocks arranged in a single row
+- Each clock can show 0-100% fill (fractional filling)
+- Water-filling effect with gradient and wave animation
+- Clock design includes hour markers (12, 3, 6, 9 o'clock) and hour hand pointing to 12
 - Shows percentage with 2 decimal places
-- At least 1 box filled if percentage > 0%
+- At least one clock partially filled if percentage > 0%
 
 ### Activity Suggestions
 Based on remaining time, the app suggests:
@@ -223,7 +226,8 @@ This application is for informational and motivational purposes only. Life expec
   - Initial release
   - 13 languages supported (Korean, English, German, Japanese, Simplified Chinese, Traditional Chinese, Russian, French, Italian, Portuguese, Spanish, Ukrainian, Dutch)
   - Separate birth date input fields (Year, Month, Day, Time)
-  - Visual battery indicator with special characters
+  - Visual clock grid with 8 circular clocks and water-filling effect
   - Activity suggestions feature
+  - Font scaling support (Ctrl + Mouse Wheel) for both versions
   - Both Python and C++ implementations
 
