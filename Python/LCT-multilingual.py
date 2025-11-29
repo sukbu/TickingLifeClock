@@ -486,11 +486,16 @@ class LifeBatteryClock:
                     fill="black", outline="black"
                 )
                 
-                # 시계 바늘 (12시 방향) - PowerPoint asset처럼
+                # 시계 바늘 (3시간 간격으로 배치: 0, 3, 6, 9, 12, 15, 18, 21시)
+                hour = (clock_index % 8) * 3  # 0, 3, 6, 9, 12, 15, 18, 21
+                hour_angle = math.radians(hour * 30.0 - 90.0)  # -90도부터 시작 (12시가 위)
+                hand_length = radius - dot_size - 6
+                hand_end_x = center_x + int(hand_length * math.cos(hour_angle))
+                hand_end_y = center_y + int(hand_length * math.sin(hour_angle))
+                
                 line_width = max(2, clock_size // 18)
                 canvas.create_line(
-                    center_x, center_y,
-                    center_x, y + dot_size + 4,
+                    center_x, center_y, hand_end_x, hand_end_y,
                     width=line_width, fill="black"
                 )
                 

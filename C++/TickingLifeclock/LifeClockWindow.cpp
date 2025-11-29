@@ -153,9 +153,15 @@ void ClockGridWidget::paintEvent(QPaintEvent* event) {
             // 9시 위치
             painter.drawEllipse(centerX - dotRadius - dotSize/2, centerY - dotSize/2, dotSize, dotSize);
             
-            // 시계 바늘 (12시 방향) - PowerPoint asset처럼
+            // 시계 바늘 (3시간 간격으로 배치: 0, 3, 6, 9, 12, 15, 18, 21시)
+            int hour = (clockIndex % 8) * 3;  // 0, 3, 6, 9, 12, 15, 18, 21
+            double hourAngle = (hour * 30.0 - 90.0) * M_PI / 180.0;  // -90도부터 시작 (12시가 위)
+            int handLength = radius - dotSize - 6;
+            int handEndX = centerX + static_cast<int>(handLength * cos(hourAngle));
+            int handEndY = centerY + static_cast<int>(handLength * sin(hourAngle));
+            
             painter.setPen(QPen(QColor(0, 0, 0), qMax(2, clockSize / 18)));
-            painter.drawLine(centerX, centerY, centerX, y + dotSize + 4);
+            painter.drawLine(centerX, centerY, handEndX, handEndY);
             
             clockIndex++;
         }
