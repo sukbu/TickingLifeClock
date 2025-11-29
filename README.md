@@ -138,6 +138,23 @@ The executable will be in `dist/LCT-multilingual.exe`
 - The `-arch x64` flag ensures the MSI is built for 64-bit architecture and installs to `C:\Program Files\Life Battery Clock` (not `C:\Program Files (x86)`).
 - The WiX file references `..\..\x64\Release\TickingLifeclock.exe` relative to the `installer` folder, which resolves to `C++/x64/Release/TickingLifeclock.exe`.
 
+### Publishing MSI to GitHub Releases
+
+To make the MSI installer available for download on GitHub (like WiX Toolset does):
+
+1. **Build the MSI** (as described above)
+2. **Create a GitHub Release**:
+   - Go to your GitHub repository: https://github.com/sukbu/TickingLifeClock
+   - Click on "Releases" → "Create a new release"
+   - Choose a tag (e.g., `v1.0.0`) or create a new one
+   - Fill in the release title and description
+   - **Attach the MSI file**: Click "Attach binaries" and select `LifeBatteryClock.msi` from `C++/TickingLifeclock/installer/`
+   - Click "Publish release"
+
+3. **The MSI will appear in the "Assets" section** of the release page, making it easy for users to download.
+
+**Note**: You can also automate this process using GitHub Actions to automatically build and publish releases when you push a tag.
+
 ### Other Installer Options
 
 - **Inno Setup**: Easy-to-use installer - https://jrsoftware.org/isdl.php
