@@ -46,27 +46,27 @@
       
       <!-- Qt Core DLL -->
       <Component Id="Qt6Core">
-        <File Source="..\..\x64\Release\Qt6Core.dll" />
+        <File Source="..\..\x64\Release\Qt6Core.dll" KeyPath="yes" />
       </Component>
       
       <!-- Qt GUI DLL -->
       <Component Id="Qt6Gui">
-        <File Source="..\..\x64\Release\Qt6Gui.dll" />
+        <File Source="..\..\x64\Release\Qt6Gui.dll" KeyPath="yes" />
       </Component>
       
       <!-- Qt Widgets DLL -->
       <Component Id="Qt6Widgets">
-        <File Source="..\..\x64\Release\Qt6Widgets.dll" />
+        <File Source="..\..\x64\Release\Qt6Widgets.dll" KeyPath="yes" />
       </Component>
       
       <!-- Qt Network DLL -->
       <Component Id="Qt6Network">
-        <File Source="..\..\x64\Release\Qt6Network.dll" />
+        <File Source="..\..\x64\Release\Qt6Network.dll" KeyPath="yes" />
       </Component>
       
       <!-- Qt SVG DLL -->
       <Component Id="Qt6Svg">
-        <File Source="..\..\x64\Release\Qt6Svg.dll" />
+        <File Source="..\..\x64\Release\Qt6Svg.dll" KeyPath="yes" />
       </Component>
       
       <!-- Platforms 폴더 -->
@@ -104,8 +104,10 @@
       
       <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
       <!-- 모든 하위 폴더가 제거된 후 메인 폴더 제거 -->
+      <!-- WiX v6.0에서는 RemoveFolder가 마지막 컴포넌트에 있어야 함 -->
       <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
-        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
+        <CreateFolder />
+        <RemoveFolder Id="RemoveINSTALLFOLDER" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
                        Name="InstallFolderCleanup" 
