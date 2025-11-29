@@ -71,12 +71,14 @@
       
       <!-- Platforms 폴더 -->
       <Component Id="PlatformsQWindows" Directory="PlatformsFolder">
+        <CreateFolder />
         <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
         <RemoveFolder Id="PlatformsFolder" On="uninstall" />
       </Component>
       
       <!-- Image Formats 폴더 -->
       <Component Id="ImageFormatGif" Directory="ImageFormatsFolder">
+        <CreateFolder />
         <File Source="..\..\x64\Release\imageformats\qgif.dll" KeyPath="yes" />
       </Component>
       <Component Id="ImageFormatJpeg" Directory="ImageFormatsFolder">
@@ -92,12 +94,14 @@
       
       <!-- Icon Engines 폴더 -->
       <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
+        <CreateFolder />
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
         <RemoveFolder Id="IconEnginesFolder" On="uninstall" />
       </Component>
       
       <!-- Styles 폴더 (Qt 스타일 플러그인) -->
       <Component Id="StyleModernWindows" Directory="StylesFolder">
+        <CreateFolder />
         <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
         <RemoveFolder Id="StylesFolder" On="uninstall" />
       </Component>
