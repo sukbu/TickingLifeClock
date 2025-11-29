@@ -71,6 +71,7 @@
       <!-- Platforms 폴더 -->
       <Component Id="PlatformsQWindows" Directory="PlatformsFolder">
         <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
+        <RemoveFolder Id="RemovePlatformsFolder" On="uninstall" />
       </Component>
       
       <!-- Image Formats 폴더 -->
@@ -85,14 +86,17 @@
       </Component>
       <Component Id="ImageFormatIco" Directory="ImageFormatsFolder">
         <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
+        <RemoveFolder Id="RemoveImageFormatsFolder" On="uninstall" />
       </Component>
       
       <!-- Icon Engines 폴더 -->
       <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
+        <RemoveFolder Id="RemoveIconEnginesFolder" On="uninstall" />
       </Component>
       
       <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
+      <!-- 모든 하위 폴더가 제거된 후 메인 폴더 제거 -->
       <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
         <RemoveFolder Id="RemoveInstallFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
