@@ -129,11 +129,14 @@ The executable will be in `dist/LCT-multilingual.exe`
 3. **Build MSI installer**:
    ```bash
    cd C++/TickingLifeclock/installer
-   wix build LifeBatteryClock.wxs
+   wix build -arch x64 LifeBatteryClock.wxs
    ```
    The MSI file will be generated in the `installer` folder.
 
-**Important**: Always rebuild the Release .exe before creating the MSI installer to ensure the MSI contains the latest version of your application.
+**Important**: 
+- Always rebuild the Release .exe in Visual Studio before creating the MSI installer to ensure the MSI contains the latest version of your application.
+- The `-arch x64` flag ensures the MSI is built for 64-bit architecture and installs to `C:\Program Files\Life Battery Clock` (not `C:\Program Files (x86)`).
+- The WiX file references `..\..\x64\Release\TickingLifeclock.exe` relative to the `installer` folder, which resolves to `C++/x64/Release/TickingLifeclock.exe`.
 
 ### Other Installer Options
 
