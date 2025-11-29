@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs">
+  <Package Name="Life Battery Clock"
+           Version="1.0.0"
+           Manufacturer="sukbu"
+           UpgradeCode="6413ac81-0d5c-4525-ac03-b4e335f441d5"
+           Compressed="yes"
+           Scope="perMachine">
+    
+    <Icon Id="AppIcon" SourceFile="..\icon.ico" />
+    
+    <MajorUpgrade DowngradeErrorMessage="A newer version is already installed." />
+    <Media Id="1" Cabinet="LifeBatteryClock.cab" EmbedCab="yes" />
+    
+    <StandardDirectory Id="ProgramFilesFolder">
+      <Directory Id="INSTALLFOLDER" Name="Life Battery Clock">
+        <Directory Id="PlatformsFolder" Name="platforms" />
+        <Directory Id="ImageFormatsFolder" Name="imageformats" />
+        <Directory Id="IconEnginesFolder" Name="iconengines" />
+      </Directory>
+    </StandardDirectory>
+    
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="ApplicationProgramsFolder" Name="Life Battery Clock" />
+    </StandardDirectory>
+    
+    <StandardDirectory Id="DesktopFolder" />
+    
+    <Feature Id="ProductFeature" Title="Life Battery Clock" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentGroupRef Id="Shortcuts" />
+      <ComponentGroupRef Id="DesktopShortcut" />
+    </Feature>
+  </Package>
+  
+  <!-- 설치할 파일들 -->
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- 메인 실행 파일 -->
+      <Component Id="MainExecutable">
+        <File Id="TickingLifeclock.exe" 
+              Source="..\..\x64\Release\TickingLifeclock.exe" 
+              KeyPath="yes" />
+      </Component>
+      
+      <!-- Qt Core DLL -->
+      <Component Id="Qt6Core">
+        <File Source="..\..\x64\Release\Qt6Core.dll" />
+      </Component>
+      
+      <!-- Qt GUI DLL -->
+      <Component Id="Qt6Gui">
+        <File Source="..\..\x64\Release\Qt6Gui.dll" />
+      </Component>
+      
+      <!-- Qt Widgets DLL -->
+      <Component Id="Qt6Widgets">
+        <File Source="..\..\x64\Release\Qt6Widgets.dll" />
+      </Component>
+      
+      <!-- Qt Network DLL -->
+      <Component Id="Qt6Network">
+        <File Source="..\..\x64\Release\Qt6Network.dll" />
+      </Component>
+      
+      <!-- Qt SVG DLL -->
+      <Component Id="Qt6Svg">
+        <File Source="..\..\x64\Release\Qt6Svg.dll" />
+      </Component>
+      
+      <!-- Platforms 폴더 -->
+      <Component Id="PlatformsQWindows" Directory="PlatformsFolder">
+        <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
+      </Component>
+      
+      <!-- Image Formats 폴더 -->
+      <Component Id="ImageFormatGif" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qgif.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ImageFormatJpeg" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qjpeg.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ImageFormatSvg" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qsvg.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="ImageFormatIco" Directory="ImageFormatsFolder">
+        <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
+      </Component>
+      
+      <!-- Icon Engines 폴더 -->
+      <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
+        <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+  
+  <!-- 바로가기 -->
+  <Fragment>
+    <ComponentGroup Id="Shortcuts" Directory="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="Life Battery Clock"
+                  Description="Life Battery Clock Application"
+                  Target="[INSTALLFOLDER]TickingLifeclock.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon" />
+        <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" 
+                       Key="Software\Life Battery Clock" 
+                       Name="Installed" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+    
+    <ComponentGroup Id="DesktopShortcut" Directory="DesktopFolder">
+      <Component Id="DesktopShortcutComponent">
+        <Shortcut Id="DesktopShortcut"
+                  Name="Life Battery Clock"
+                  Target="[INSTALLFOLDER]TickingLifeclock.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="AppIcon" />
+        <RemoveFolder Id="DesktopFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" 
+                       Key="Software\Life Battery Clock" 
+                       Name="DesktopShortcut" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

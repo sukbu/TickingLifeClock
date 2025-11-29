@@ -1,0 +1,29 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Source code files - use LF
+*.cpp text eol=lf
+*.h text eol=lf
+*.py text eol=lf
+*.wxs text eol=lf
+*.spec text eol=lf
+*.qrc text eol=lf
+*.ui text eol=lf
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.vcxproj.filters text eol=crlf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+
+# Binary files
+*.exe binary
+*.dll binary
+*.obj binary
+*.pdb binary
+*.msi binary
+*.cab binary
+*.pfx binary
+*.cer binary
+

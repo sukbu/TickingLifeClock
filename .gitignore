@@ -1,0 +1,108 @@
+# Build outputs
+**/x64/
+**/x86/
+**/Debug/
+**/Release/
+**/build/
+**/dist/
+*.exe
+*.dll
+*.obj
+*.pdb
+*.ilk
+*.log
+*.tlog
+*.sbr
+*.bsc
+*.idb
+*.ipdb
+*.iobj
+*.recipe
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vcxproj.user
+*.vcxproj.filters
+*.vcxproj.userosscache
+*.sdf
+*.opensdf
+*.db
+*.opendb
+
+# Qt
+**/moc_*.cpp
+**/moc_*.h
+**/qrc_*.cpp
+**/ui_*.h
+**/qt/
+**/QtMsBuild/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+# Keep Python source files
+!*.py
+
+# PyInstaller
+*.spec.bak
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.bak
+*.cache
+
+# WiX Installer build outputs
+*.msi
+*.cab
+*.wixpdb
+*.wixobj
+*.wixout
+# Keep .wxs files (source files)
+!*.wxs
+
+# Code signing certificates (민감한 정보 - 절대 커밋하지 마세요!)
+*.pfx
+*.p12
+*.cer
+*.crt
+*.key
+*.pem
+*.p7b
+
+# Installer logs
+install.log
+*.log
+
+# VS Code settings (if any)
+.vscode/settings.json
+
+# Project-specific config files (may contain local paths)
+ProjectConfigInfo.txt
+
+# Shortcuts
+*.lnk
+*.url
+
