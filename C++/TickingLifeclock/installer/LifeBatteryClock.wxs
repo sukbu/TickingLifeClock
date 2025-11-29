@@ -143,10 +143,11 @@
       </Component>
       
       <!-- 메인 설치 폴더 제거 컴포넌트 (모든 하위 폴더와 파일이 제거된 후 실행) -->
-      <!-- WiX는 컴포넌트가 제거될 때 자동으로 파일을 제거하므로, 이 컴포넌트는 폴더만 제거 -->
-      <!-- RemoveFolder의 Id는 Directory Id와 일치해야 함 -->
+      <!-- 모든 파일을 명시적으로 제거한 후 폴더 제거 -->
       <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
         <CreateFolder />
+        <!-- 모든 파일 제거 (와일드카드 사용) -->
+        <RemoveFile Id="RemoveAllFiles" Name="*.*" On="uninstall" />
         <!-- 빈 폴더 제거 (모든 파일과 하위 폴더가 제거된 후 실행됨) -->
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
         <RegistryValue Root="HKLM" 
