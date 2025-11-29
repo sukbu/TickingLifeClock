@@ -42,31 +42,37 @@
         <File Id="TickingLifeclock.exe" 
               Source="..\..\x64\Release\TickingLifeclock.exe" 
               KeyPath="yes" />
+        <RemoveFile Id="RemoveMainExe" Name="TickingLifeclock.exe" On="uninstall" />
       </Component>
       
       <!-- Qt Core DLL -->
       <Component Id="Qt6Core">
         <File Source="..\..\x64\Release\Qt6Core.dll" KeyPath="yes" />
+        <RemoveFile Id="RemoveQt6CoreDll" Name="Qt6Core.dll" On="uninstall" />
       </Component>
       
       <!-- Qt GUI DLL -->
       <Component Id="Qt6Gui">
         <File Source="..\..\x64\Release\Qt6Gui.dll" KeyPath="yes" />
+        <RemoveFile Id="RemoveQt6GuiDll" Name="Qt6Gui.dll" On="uninstall" />
       </Component>
       
       <!-- Qt Widgets DLL -->
       <Component Id="Qt6Widgets">
         <File Source="..\..\x64\Release\Qt6Widgets.dll" KeyPath="yes" />
+        <RemoveFile Id="RemoveQt6WidgetsDll" Name="Qt6Widgets.dll" On="uninstall" />
       </Component>
       
       <!-- Qt Network DLL -->
       <Component Id="Qt6Network">
         <File Source="..\..\x64\Release\Qt6Network.dll" KeyPath="yes" />
+        <RemoveFile Id="RemoveQt6NetworkDll" Name="Qt6Network.dll" On="uninstall" />
       </Component>
       
       <!-- Qt SVG DLL -->
       <Component Id="Qt6Svg">
         <File Source="..\..\x64\Release\Qt6Svg.dll" KeyPath="yes" />
+        <RemoveFile Id="RemoveQt6SvgDll" Name="Qt6Svg.dll" On="uninstall" />
       </Component>
       
       <!-- Platforms 폴더 -->
