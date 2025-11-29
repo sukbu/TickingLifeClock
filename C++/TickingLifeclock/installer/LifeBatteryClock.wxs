@@ -17,6 +17,7 @@
         <Directory Id="PlatformsFolder" Name="platforms" />
         <Directory Id="ImageFormatsFolder" Name="imageformats" />
         <Directory Id="IconEnginesFolder" Name="iconengines" />
+        <Directory Id="StylesFolder" Name="styles" />
       </Directory>
     </StandardDirectory>
     
@@ -93,6 +94,12 @@
       <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
         <RemoveFolder Id="IconEnginesFolder" On="uninstall" />
+      </Component>
+      
+      <!-- Styles 폴더 (Qt 스타일 플러그인) -->
+      <Component Id="StyleModernWindows" Directory="StylesFolder">
+        <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
+        <RemoveFolder Id="StylesFolder" On="uninstall" />
       </Component>
       
       <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
