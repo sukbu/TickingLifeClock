@@ -75,6 +75,7 @@
         <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
       </Component>
       <Component Id="RemovePlatformsFolder" Directory="PlatformsFolder">
+        <RemoveFile Id="RemovePlatformsFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="PlatformsFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
@@ -99,6 +100,7 @@
         <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
       </Component>
       <Component Id="RemoveImageFormatsFolder" Directory="ImageFormatsFolder">
+        <RemoveFile Id="RemoveImageFormatsFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="ImageFormatsFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
@@ -114,6 +116,7 @@
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
       </Component>
       <Component Id="RemoveIconEnginesFolder" Directory="IconEnginesFolder">
+        <RemoveFile Id="RemoveIconEnginesFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="IconEnginesFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
@@ -129,6 +132,7 @@
         <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
       </Component>
       <Component Id="RemoveStylesFolder" Directory="StylesFolder">
+        <RemoveFile Id="RemoveStylesFiles" Name="*.*" On="uninstall" />
         <RemoveFolder Id="StylesFolder" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
