@@ -73,7 +73,15 @@
       <Component Id="PlatformsQWindows" Directory="PlatformsFolder">
         <CreateFolder />
         <File Source="..\..\x64\Release\platforms\qwindows.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="RemovePlatformsFolder" Directory="PlatformsFolder">
         <RemoveFolder Id="PlatformsFolder" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="RemovePlatformsFolder" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
       </Component>
       
       <!-- Image Formats 폴더 -->
@@ -89,21 +97,45 @@
       </Component>
       <Component Id="ImageFormatIco" Directory="ImageFormatsFolder">
         <File Source="..\..\x64\Release\imageformats\qico.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="RemoveImageFormatsFolder" Directory="ImageFormatsFolder">
         <RemoveFolder Id="ImageFormatsFolder" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="RemoveImageFormatsFolder" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
       </Component>
       
       <!-- Icon Engines 폴더 -->
       <Component Id="IconEnginesSvg" Directory="IconEnginesFolder">
         <CreateFolder />
         <File Source="..\..\x64\Release\iconengines\qsvgicon.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="RemoveIconEnginesFolder" Directory="IconEnginesFolder">
         <RemoveFolder Id="IconEnginesFolder" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="RemoveIconEnginesFolder" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
       </Component>
       
       <!-- Styles 폴더 (Qt 스타일 플러그인) -->
       <Component Id="StyleModernWindows" Directory="StylesFolder">
         <CreateFolder />
         <File Source="..\..\x64\Release\styles\qmodernwindowsstyle.dll" KeyPath="yes" />
+      </Component>
+      <Component Id="RemoveStylesFolder" Directory="StylesFolder">
         <RemoveFolder Id="StylesFolder" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="RemoveStylesFolder" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
       </Component>
       
       <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
