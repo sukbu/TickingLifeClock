@@ -111,21 +111,33 @@ The executable will be in `dist/LCT-multilingual.exe`
 
 ## Creating an Installer
 
-### Quick Start (Easiest: Inno Setup)
+### WiX Toolset (MSI Installer)
 
-1. **Install Inno Setup**: https://jrsoftware.org/isdl.php
-2. **Build Release version** in Visual Studio
-3. **Collect Qt dependencies**:
+1. **Build Release version** in Visual Studio:
+   - Open `C++/TickingLifeclock.sln` in Visual Studio
+   - Set configuration to **Release** and platform to **x64**
+   - Build → Rebuild Solution
+   - Ensure `C++/x64/Release/TickingLifeclock.exe` is up to date
+
+2. **Collect Qt dependencies**:
    ```bash
    cd C:\Qt\6.9.0\msvc2022_64\bin
    windeployqt.exe --release "C:\path\to\TickingLifeclock.exe"
    ```
-4. **Create installer script** in Inno Setup (see examples in installer documentation)
-5. **Compile** in Inno Setup Compiler → Your installer is ready!
+   This will copy all required Qt DLLs and plugins to the Release folder.
+
+3. **Build MSI installer**:
+   ```bash
+   cd C++/TickingLifeclock/installer
+   wix build LifeBatteryClock.wxs
+   ```
+   The MSI file will be generated in the `installer` folder.
+
+**Important**: Always rebuild the Release .exe before creating the MSI installer to ensure the MSI contains the latest version of your application.
 
 ### Other Installer Options
 
-- **WiX Toolset** (MSI): Professional MSI installer - https://wixtoolset.org/
+- **Inno Setup**: Easy-to-use installer - https://jrsoftware.org/isdl.php
 - **Qt Installer Framework**: Qt-specific installer (included with Qt)
 - **NSIS**: Another popular option - https://nsis.sourceforge.io/
 
