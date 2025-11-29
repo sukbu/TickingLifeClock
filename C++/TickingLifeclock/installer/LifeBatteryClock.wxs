@@ -140,11 +140,12 @@
       
       <!-- 설치 폴더 제거 컴포넌트 (uninstall 시 폴더 삭제) -->
       <!-- 모든 파일과 하위 폴더가 제거된 후 메인 폴더 제거 -->
-      <!-- WiX v6.0에서는 RemoveFolder의 Id가 Directory의 Id와 일치해야 함 -->
-      <!-- CreateFolder를 사용하여 폴더가 명시적으로 생성되도록 하고, RemoveFolder로 제거 -->
-      <!-- 이 컴포넌트는 마지막에 실행되어야 하므로 모든 파일 컴포넌트 다음에 배치 -->
+      <!-- WiX v6.0에서는 RemoveFolder가 빈 폴더만 제거하므로, 먼저 모든 파일을 제거해야 함 -->
       <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
         <CreateFolder />
+        <!-- 모든 파일 제거 (와일드카드 사용) -->
+        <RemoveFile Id="RemoveAllFiles" Name="*.*" On="uninstall" />
+        <!-- 빈 폴더 제거 -->
         <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
