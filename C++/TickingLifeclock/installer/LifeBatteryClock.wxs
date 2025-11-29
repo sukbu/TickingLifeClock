@@ -73,8 +73,6 @@
       <Component Id="Qt6Svg">
         <File Source="..\..\x64\Release\Qt6Svg.dll" KeyPath="yes" />
         <RemoveFile Id="RemoveQt6SvgDll" Name="Qt6Svg.dll" On="uninstall" />
-        <!-- 마지막 파일 컴포넌트에서 폴더도 제거 (모든 파일이 제거된 후 실행됨) -->
-        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
       </Component>
       
       <!-- Platforms 폴더 -->
@@ -145,6 +143,19 @@
         <RegistryValue Root="HKLM" 
                        Key="Software\Life Battery Clock" 
                        Name="RemoveStylesFolder" 
+                       Type="integer" 
+                       Value="1" 
+                       KeyPath="yes" />
+      </Component>
+      
+      <!-- 메인 설치 폴더 제거 컴포넌트 (모든 하위 폴더와 파일이 제거된 후 실행) -->
+      <Component Id="InstallFolderCleanup" Directory="INSTALLFOLDER">
+        <CreateFolder />
+        <!-- 빈 폴더 제거 (모든 파일과 하위 폴더가 제거된 후 실행됨) -->
+        <RemoveFolder Id="INSTALLFOLDER" On="uninstall" />
+        <RegistryValue Root="HKLM" 
+                       Key="Software\Life Battery Clock" 
+                       Name="InstallFolderCleanup" 
                        Type="integer" 
                        Value="1" 
                        KeyPath="yes" />
